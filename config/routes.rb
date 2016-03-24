@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 		# /api/... Api::
 		namespace :v1 do
 			resources :songs
+			put 'songs/:id', to: "songs#update"
 		end
 	end
   # get 'songs/index'

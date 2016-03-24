@@ -44,6 +44,7 @@
    </tbody>
 </table>
 
+<% unless @songs.blank? %>
 <script>
     var aud = document.getElementById("player");
 	aud.onended = function() {
@@ -54,3 +55,4 @@ $('.delete_song').bind('ajax:success', function() {
    $(this).closest('tr').fadeOut();
 });
 </script>
+<% end %>
