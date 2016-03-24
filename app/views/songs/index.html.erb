@@ -1,0 +1,56 @@
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<br />
+
+<%= link_to "New Song", new_song_path, class: "btn btn-primary" %>
+<br />
+<br />
+
+
+<div class = "container" align="center" >
+	<% unless @songs.blank? %>
+	<% @song = @songs.order(votes: :desc).limit(1).first %>
+    <audio controls id="player" autoplay="true"><source src=<%=@song.music_url%>></audio>
+    <% @song.votes = 0%>
+    <% @song.save %>
+    <% end %>
+</div>
+
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+         <th>Name</th>
+         <th>Artist</th>
+         <th>Genre</th>
+         <th>Votes</th>
+         <th>Remove</th>
+      </tr>
+   </thead>
+
+   <tbody>
+      <% @songs.each do |song| %>
+         <tr>
+            <td><%= song.name %></td>
+            <td><%= song.artist %></td>
+            <td><%= song.genre %></td>
+            <td><%= song.votes %></td>
+            <td class="delete_song"><%= button_to "Delete",  song, method: :delete, class: "btn btn-danger", data:{confirm: "Are you sure that you wish to delete #{song.name}?"}, :remote => true%></td>
+         </tr>
+      <% end %>
+   </tbody>
+</table>
+
+<script>
+    var aud = document.getElementById("player");
+	aud.onended = function() {
+    aud.src = '<%=@songs.order(votes: :desc).limit(1).first.music_url%>' ;
+    aud.load();
+};
+$('.delete_song').bind('ajax:success', function() {
+   $(this).closest('tr').fadeOut();
+});
+</script>

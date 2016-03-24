@@ -1,0 +1,37 @@
+<% if !@song.errors.empty? %>
+   <div class = "alert alert-error">      
+      <ul>
+         <% @song.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+         <% @song.remove_music! %>
+         <% @song.remove_image! %>
+         <% @song.artist="" %>
+         <% @song.name ="" %>
+         <% @song.genre="" %>
+         <% @song.destroy! %>
+      </ul>
+      
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @song, html: { multipart: true } do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br/>
+      <%= f.label :artist %>
+      <%= f.text_field :artist %>
+      <br/>
+      <%= f.label :genre %>
+      <%= f.text_field :genre %>
+      <br/>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <br/>
+      <%= f.label :music %>
+      <%= f.file_field :music %>
+      <br/>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>
