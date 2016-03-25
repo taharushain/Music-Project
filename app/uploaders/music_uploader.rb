@@ -11,5 +11,4 @@ class MusicUploader < CarrierWave::Uploader::Base
       %w(mp3 ogg wav)
    end
 
-
 end
