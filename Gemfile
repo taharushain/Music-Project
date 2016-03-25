@@ -26,7 +26,6 @@ gem 'carrierwave', '0.10.0'
 gem 'bootstrap-sass', '3.3.6'
 gem 'responders', '~> 2.0'
 gem "fog"
-gem 'google-api-client', '< 0.9', '>= 0.6.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

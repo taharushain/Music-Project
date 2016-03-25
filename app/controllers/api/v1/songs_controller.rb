@@ -11,18 +11,18 @@ module Api
 				respond_with Song.find(params[:id])
 			end
 
-			def create
-				respond_with Song.create(params[:song])
-			end
+			# def create
+			# 	respond_with Song.create(params[:song])
+			# end
 
-			def update
-				@song = Song.find(params[:id])
-				if @song.update_attributes(user_params)
-					@song.vote = @song.vote + 1
-					@song.save!
-      		    end
-        		# respond_with Song.update(params[:id])
- 		   end
+			# def update
+			# 	@song = Song.find(params[:id])
+			# 	if @song.update_attributes(user_params)
+			# 		@song.vote = @song.vote + 1
+			# 		@song.save!
+   #    		    end
+   #      		# respond_with Song.update(params[:id])
+ 		#    end
 
 
     def destroy
