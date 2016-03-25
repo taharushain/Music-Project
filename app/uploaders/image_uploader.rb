@@ -1,4 +1,13 @@
-# encoding: utf-8
+CarrierWave.configure do |config|
+  config.fog_provider = 'fog-google'                        # required
+  config.fog_credentials = {
+    provider:                         'Google',
+    google_storage_access_key_id:     'GOOGBGPRKEJ6RPLUIHMK',
+    google_storage_secret_access_key: '1YwXH3EiU2Sg7Xwrnen/ofkfhnlmoXSi9GgEP3mv '
+  }
+  config.fog_directory = 'projectm'
+end
+
 
 class ImageUploader < CarrierWave::Uploader::Base
 
@@ -7,7 +16,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  storage :fog
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
